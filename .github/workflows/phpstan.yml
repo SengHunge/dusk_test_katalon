@@ -42,7 +42,7 @@ jobs:
           name: phpstan
           path: phpstan.json
       - name: Run Dusk Tests
-        run: php artisan dusk
+        run: php artisan dusk:chrome
       - name: Upload Screenshots
         if: failure()
         uses: actions/upload-artifact@v2
