@@ -35,8 +35,7 @@ jobs:
       - name: Install PHPStan
         run: composer require --dev phpstan/phpstan 
       - name: PHPStan
-        run: ./vendor/bin/phpstan analyse tests storage --memory-limit=1G --level=1 --
- 	  error-format=json > phpstan.json
+        run: ./vendor/bin/phpstan analyse tests storage --memory-limit=1G --level=1 --error-format=json > phpstan.json
       - name: Upload PHPStan results  #Upload result
         uses: actions/upload-artifact@v3
         with:
