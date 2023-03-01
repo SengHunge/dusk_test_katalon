@@ -26,7 +26,9 @@ jobs:
       - name: Generate Application Key
         run: php artisan key:generate 
       - name: Install npm
-        run: npm install     
+        run: |
+          npm install     
+          npm run dev
       - name: Upgrade Chrome Driver
         run: php artisan dusk:chrome-driver --detect      
       - name: Ensure the ChromeDriver binaries are executable
