@@ -8,7 +8,7 @@ jobs:
     env:
       APP_URL: "http://127.0.0.1:8000"
       DB_USERNAME: root
-      DB_PASSWORD: 
+      DB_PASSWORD: root
       MAIL_MAILER: log
       DB_DATABASE: dusk_test_katalon
       DUSK_HEADLESS: true
