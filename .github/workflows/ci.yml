@@ -35,10 +35,17 @@ jobs:
         run: ./vendor/laravel/dusk/bin/chromedriver-linux &  
       # - name: Install Firefox driver
       #   run: php artisan dusk:firefox-driver      
-      - name: Run Laravel Server
-        run: php artisan serve --no-reload &
+      - name: Install breeze
+        run: composer require laravel/breeze --dev
+      - name: Install blade
+        run: |
+          php artisan breeze:install blade
       - name: DB Migrate
         run: php artisan migrate
+      - name: Clear cache
+        run: php artisan config:clear
+      - name: Run Laravel Server
+        run: php artisan serve --no-reload &     
       - name: PHPUnit
         run: ./vendor/bin/phpunit --do-not-cache-result --testdox-html phpunit.html tests
       - name: Upload PHPUnit results
