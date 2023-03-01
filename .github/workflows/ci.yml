@@ -38,7 +38,7 @@ jobs:
       - name: DB Migrate
         run: php artisan migrate
       - name: PHPUnit
-        run: ./vendor/bin/phpunit --do-not-cache-result --testdox-html phpunit.html tests --filter LoginTest
+        run: ./vendor/bin/phpunit --do-not-cache-result --testdox-html phpunit.html tests
       - name: Upload PHPUnit results
         uses: actions/upload-artifact@v3
         with:
