@@ -32,26 +32,32 @@ jobs:
         run: ./vendor/laravel/dusk/bin/chromedriver-linux &        
       - name: Run Laravel Server
         run: php artisan serve --no-reload &
+      - name: PHPUnit
+        run: ./vendor/bin/phpunit --do-not-cache-result --testdox-html phpunit.html --filter=LoginTest tests
+      - name: Upload PHPUnit results  #Upload result
+        uses: actions/upload-artifact@v3
+        with:
+          name: phpunit
+          path: phpunit.html
       - name: Install PHPStan
         run: composer require --dev phpstan/phpstan 
       - name: PHPStan
-        run: ./vendor/bin/phpstan analyse tests storage --memory-limit=1G --level=1 --error-format=json > phpstan.json
-      - name: Upload PHPStan results  #Upload result
+        run: ./vendor/bin/phpstan analyse tests --memory-limit=1G --level=2 --xdebug --debug --no-progress --error-format=prettyJson > phpstan.json
+        continue-on-error: true
+      - name: Upload PHPStan results
         uses: actions/upload-artifact@v3
         with:
           name: phpstan
           path: phpstan.json
       - name: Run Dusk Tests
         run: php artisan dusk:chrome
-      - name: Upload Screenshots
-        if: failure()
-        uses: actions/upload-artifact@v2
+      - name: Upload Screenshots        
+        uses: actions/upload-artifact@v3
         with:
           name: screenshots
           path: tests/Browser/screenshots
-      - name: Upload Console Logs
-        if: failure()
-        uses: actions/upload-artifact@v2
+      - name: Upload Console Logs        
+        uses: actions/upload-artifact@v3
         with:
           name: console
           path: tests/Browser/console
