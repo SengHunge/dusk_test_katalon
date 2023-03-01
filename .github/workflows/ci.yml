@@ -12,6 +12,7 @@ jobs:
       MAIL_MAILER: log
       DB_DATABASE: dusk_test_katalon
       DUSK_HEADLESS: true
+      DUSK_CHROME: 1
     steps:
       - uses: actions/checkout@v3
       - name: Prepare The Environment
