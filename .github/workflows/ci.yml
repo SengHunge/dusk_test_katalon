@@ -36,7 +36,7 @@ jobs:
       - name: Run Laravel Server
         run: php artisan serve --no-reload &
       - name: PHPUnit
-        run: ./vendor/bin/phpunit --do-not-cache-result --testdox-html phpunit.html
+        run: ./vendor/bin/phpunit --do-not-cache-result --testdox-html phpunit.html tests
       - name: Upload PHPUnit results
         uses: actions/upload-artifact@v3
         with:
