@@ -27,6 +27,8 @@ jobs:
         run: php artisan key:generate 
       - name: Install npm
         run: npm install
+      - name: Install blade
+        run: php artisan breeze:install blade
       - name: Upgrade Chrome Driver
         run: php artisan dusk:chrome-driver --detect      
       - name: Ensure the ChromeDriver binaries are executable
@@ -34,15 +36,7 @@ jobs:
       - name: Start Chrome Driver
         run: ./vendor/laravel/dusk/bin/chromedriver-linux &  
       # - name: Install Firefox driver
-      #   run: php artisan dusk:firefox-driver      
-      # - name: Install breeze
-      #   run: composer require laravel/breeze --dev
-      - name: Install blade
-        run: php artisan breeze:install blade
-      # - name: DB Migrate
-      #   run: php artisan migrate
-      # - name: Clear cache
-      #   run: php artisan config:clear
+      #   run: php artisan dusk:firefox-driver            
       - name: Run Laravel Server
         run: php artisan serve --no-reload &     
       - name: PHPUnit
