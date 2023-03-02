@@ -63,7 +63,7 @@ jobs:
         # run: php artisan dusk
 
       - name: Katalon Studio Github Action
-        uses: katalon-studio/katalon-studio-github-action@v3
+        uses: katalon-studio/katalon-studio-github-action@v2
         with:
           version: '8.5.5'
           projectPath: '${{ github.workspace }}'
