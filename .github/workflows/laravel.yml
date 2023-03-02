@@ -77,7 +77,23 @@ jobs:
       - name: ZAP API Scan
         uses: zaproxy/action-api-scan@v0.1.1
         with:
-          target: 'http://127.0.0.1:8000'
+          target: http://127.0.0.1:8000
+
+      # BASIC API SCAN
+      - name: ZAP API Scan
+        uses: zaproxy/action-api-scan@v0.1.1
+        with:
+          target: http://127.0.0.1:8000
+      - name: Upload ZAP API Report - HTML        
+        uses: actions/upload-artifact@v3
+        with:
+          name: zap_api_html
+          path: report_html.html
+      - name: Upload ZAP API Report - MD        
+        uses: actions/upload-artifact@v3
+        with:
+          name: zap_api_md
+          path: report_md.md
       - name: Upload Screenshots        
         uses: actions/upload-artifact@v3
         with:
