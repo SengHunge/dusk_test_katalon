@@ -74,10 +74,10 @@ jobs:
       #   with:
       #     target: 'http://127.0.0.1:8000'          
       # BASIC API SCAN
-      # - name: ZAP API Scan
-      #   uses: zaproxy/action-api-scan@v0.1.1
-      #   with:
-      #     target: 'http://127.0.0.1:8000'
+      - name: ZAP API Scan
+        uses: zaproxy/action-api-scan@v0.1.1
+        with:
+          target: 'http://127.0.0.1:8000'
       - name: Upload Screenshots        
         uses: actions/upload-artifact@v3
         with:
