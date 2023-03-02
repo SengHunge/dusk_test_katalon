@@ -65,7 +65,7 @@ jobs:
         with:
           version: '7.5.5'
           projectPath: '${{ github.workspace }}'
-          args: '-noSplash -retry=0 -testSuiteCollectionPath="tests" -apiKey= ${{ secrets.KATALON_API_KEY }} --config -webui.autoUpdateDrivers=true'
+          args: '-noSplash -retry=0 -testSuiteCollectionPath="tests/Browser" -apiKey= ${{ secrets.KATALON_API_KEY }} --config -webui.autoUpdateDrivers=true'
 
         # run: php artisan dusk      
       # BASIC FULL SCAN
@@ -74,10 +74,10 @@ jobs:
       #   with:
       #     target: 'http://127.0.0.1:8000'          
       # BASIC API SCAN
-      - name: ZAP API Scan
-        uses: zaproxy/action-api-scan@v0.1.1
-        with:
-          target: http://127.0.0.1:8000
+      # - name: ZAP API Scan
+      #   uses: zaproxy/action-api-scan@v0.1.1
+      #   with:
+      #     target: http://127.0.0.1:8000
 
       # BASIC API SCAN
       - name: ZAP API Scan
