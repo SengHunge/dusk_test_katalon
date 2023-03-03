@@ -59,6 +59,16 @@ jobs:
       - name: Run Dusk Tests
         run: php artisan dusk:chrome
         # run: php artisan dusk
+      - name: Upload Screenshots        
+        uses: actions/upload-artifact@v3
+        with:
+          name: screenshots
+          path: tests/Browser/screenshots
+      - name: Upload Console Logs        
+        uses: actions/upload-artifact@v3
+        with:
+          name: console
+          path: tests/Browser/console
 
       # - name: Katalon Studio Github Action
       #   uses: katalon-studio/katalon-studio-github-action@v2.1
