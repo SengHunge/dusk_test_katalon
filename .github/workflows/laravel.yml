@@ -38,28 +38,26 @@ jobs:
       # - name: Install Firefox driver
       #   run: php artisan dusk:firefox-driver            
       - name: Run Laravel Server
-        run: php artisan serve --no-reload &  
-      
-      ## Temporary comment to test   
-      # - name: PHPUnit
-      #   run: ./vendor/bin/phpunit --do-not-cache-result --testdox-html phpunit.html tests
-      # - name: Upload PHPUnit results
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: phpunit
-      #     path: phpunit.html
-      # - name: Install PHPStan
-      #   run: composer require --dev phpstan/phpstan 
-      # - name: PHPStan
-      #   run: ./vendor/bin/phpstan analyse tests --memory-limit=1G --level=2 --xdebug --debug --no-progress --error-format=prettyJson > phpstan.json
-      #   continue-on-error: true
-      # - name: Upload PHPStan results
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: phpstan
-      #     path: phpstan.json
-      # - name: Run Dusk Tests
-      #   run: php artisan dusk:chrome
+        run: php artisan serve --no-reload &            
+      - name: PHPUnit
+        run: ./vendor/bin/phpunit --do-not-cache-result --testdox-html phpunit.html tests
+      - name: Upload PHPUnit results
+        uses: actions/upload-artifact@v3
+        with:
+          name: phpunit
+          path: phpunit.html
+      - name: Install PHPStan
+        run: composer require --dev phpstan/phpstan 
+      - name: PHPStan
+        run: ./vendor/bin/phpstan analyse tests --memory-limit=1G --level=2 --xdebug --debug --no-progress --error-format=prettyJson > phpstan.json
+        continue-on-error: true
+      - name: Upload PHPStan results
+        uses: actions/upload-artifact@v3
+        with:
+          name: phpstan
+          path: phpstan.json
+      - name: Run Dusk Tests
+        run: php artisan dusk:chrome
         # run: php artisan dusk
 
       # - name: Katalon Studio Github Action
@@ -74,25 +72,29 @@ jobs:
         uses: zaproxy/action-api-scan@v0.2.0
         with:
           target: "http://127.0.0.1:8000"
-      - name: Upload ZAP API Report - HTML        
+      - name: Upload ZAP API Report - HTML
         uses: actions/upload-artifact@v3
         with:
           name: zap_api_html
           path: report_html.html
-      - name: Upload ZAP API Report - MD        
+      - name: Upload ZAP API Report - MD
         uses: actions/upload-artifact@v3
         with:
           name: zap_api_md
           path: report_md.md
 
-        
       # BASIC FULL SCAN
-      # - name: ZAP Full Scan
-      #   uses: zaproxy/action-full-scan@v0.4.0
-      #   with:
-      #     target: 'http://127.0.0.1:8000'          
-      # BASIC API SCAN
-      # - name: ZAP API Scan
-      #   uses: zaproxy/action-api-scan@v0.1.1
-      #   with:
-      #     target: http://127.0.0.1:8000                  
+      - name: ZAP Full Scan
+        uses: zaproxy/action-full-scan@v0.4.0
+        with:
+          target: "http://127.0.0.1:8000"
+      - name: Upload ZAP Full Report - HTML
+        uses: actions/upload-artifact@v3
+        with:
+          name: zap_full_html
+          path: report_html.html
+      - name: Upload ZAP Full Report -MD
+        uses: actions/upload-artifact@v3
+        with:
+          name: zap_full_md
+          path: report_md.md
